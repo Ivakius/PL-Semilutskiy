@@ -34,10 +34,9 @@ def clicked2():
         messagebox.showinfo("Выбор", "Вы ничего не выбрали")
 def load_text():
     file_path = filedialog.askopenfilename(title="Выберите файл", filetypes=(("Текстовые файлы", "*.txt"), ("Все файлы", "*.*")))
-    if file_path:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            text_content = file.read()
-            text.delete("1.0", tk.END)
+    with open(file_path, 'r', encoding='utf-8') as file:
+        for text_content in file:
+            text.delete(1.0, tk.END)
             text.insert(tk.END, text_content)
 window=Tk()
 window.title('Семилуцкий Иван Андреевич')
@@ -78,9 +77,8 @@ lbl2.grid(column =0 , row = 1)
 menu = Menu(window)
 new_item = Menu(menu, tearoff=0)
 new_item.add_command(label='Открыть', command=load_text)
-menu.add_separator()
 menu.add_cascade(label='Файл', menu=new_item)
 window.config(menu=menu)
-text = Text(tab3, width=500, height=300, bg="white", fg='black')
-text.pack()
+text = Text(tab3, width=500, height=300, bg="white", fg='black', font='Arial', wrap=WORD)
+text.pack(expand=1, fill='both')
 window.mainloop()
