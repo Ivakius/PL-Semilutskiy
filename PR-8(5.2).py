@@ -8,11 +8,11 @@ matrix = [
 ]
 for row in matrix:
     min_value = min(row)
-    if min_value % 2 == 0:  
-        min_value = 0
+    if min_value%2==0:  
+        min_value=0
     else:  
-        min_value = 1
-    new_row = [min_value if value == min(row) else value for value in row]
+        min_value=1
+    new_row=[min_value if value == min(row) else value for value in row]
     new_matrix.append(new_row)
 for row in new_matrix:
     print(row)
